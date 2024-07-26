@@ -8,18 +8,21 @@ document.addEventListener('DOMContentLoaded', function () {
         // Function to go to a specific slide
         function goToSlide(slideIndex) {
             const slider = document.querySelector('[step-slider="slider"]');
+            console.log('Slider element:', slider);
             if (!slider) {
                 console.error('Slider element with attribute step-slider="slider" not found');
                 return;
             }
 
             const slideNavContainer = slider.querySelector('.slide-nav.w-slider-nav');
+            console.log('Slide navigation container:', slideNavContainer);
             if (!slideNavContainer) {
                 console.error('Slider navigation container with class slide-nav w-slider-nav not found');
                 return;
             }
 
             const slideNavButtons = slideNavContainer.querySelectorAll('.w-slider-dot');
+            console.log('Slide navigation buttons:', slideNavButtons);
             if (slideNavButtons.length === 0) {
                 console.error('No slide navigation buttons found.');
                 return;
@@ -43,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         for (const [attr, index] of Object.entries(slideButtons)) {
             const button = document.querySelector(`[step-slider-btn="${attr}"]`);
+            console.log(`Button for ${attr}:`, button);
             if (button) {
                 button.addEventListener('click', function () {
                     console.log(`Button ${attr} clicked, navigating to slide index ${index}`);
