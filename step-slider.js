@@ -5,23 +5,26 @@ document.addEventListener('DOMContentLoaded', function () {
     Webflow.ready(function () {
         console.log('Webflow initialized');
 
+        // Function to simulate a click event
+        function simulateClick(element) {
+            if (element) {
+                element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+                console.log('Simulated click on:', element);
+            } else {
+                console.error('Element not found:', element);
+            }
+        }
+
         // Function to go to a specific slide
         function goToSlide(slideIndex) {
-            const slider = document.querySelector('[step-slider="slider"]');
-            console.log('Slider element:', slider);
-            if (!slider) {
-                console.error('Slider element with attribute step-slider="slider" not found');
+            const sliderNav = document.querySelector('[step-slider="slider-nav"]');
+            console.log('Slider navigation element:', sliderNav);
+            if (!sliderNav) {
+                console.error('Slider navigation element with attribute step-slider="slider-nav" not found');
                 return;
             }
 
-            const slideNavContainer = slider.querySelector('.slide-nav.w-slider-nav');
-            console.log('Slide navigation container:', slideNavContainer);
-            if (!slideNavContainer) {
-                console.error('Slider navigation container with class slide-nav w-slider-nav not found');
-                return;
-            }
-
-            const slideNavButtons = slideNavContainer.querySelectorAll('.w-slider-dot');
+            const slideNavButtons = sliderNav.children;
             console.log('Slide navigation buttons:', slideNavButtons);
             if (slideNavButtons.length === 0) {
                 console.error('No slide navigation buttons found.');
@@ -30,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             console.log(`Attempting to navigate to slide ${slideIndex}`);
             if (slideNavButtons[slideIndex]) {
-                slideNavButtons[slideIndex].click();
+                simulateClick(slideNavButtons[slideIndex]);
                 console.log(`Navigated to slide ${slideIndex}`);
             } else {
                 console.error(`Slide navigation button for index ${slideIndex} not found`);
