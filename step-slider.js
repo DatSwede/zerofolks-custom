@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Select the slider navigation element
-        const sliderNav = document.querySelector('[zf-slider="slider-nav"]');
+        const sliderNav = slider.querySelector('.slide-nav');
         if (!sliderNav) {
-            console.error('Slider navigation element with attribute zf-slider="slider-nav" not found');
+            console.error('Slider navigation element with class .slide-nav not found');
             return;
         }
 
