@@ -27,12 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Slider element with attribute zf-slider="slider" not found');
             return;
         }
+        console.log('Slider element found:', slider);
 
         // Add event listener for back button
         const backButton = document.querySelector('[zf-slider="click-back"]');
         if (backButton) {
             backButton.addEventListener('click', function () {
                 const nativeBackButton = slider.querySelector('.w-slider-arrow-left');
+                console.log('Back button clicked, simulating click on native back button:', nativeBackButton);
                 simulateClick(nativeBackButton);
             });
         } else {
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (nextButton) {
             nextButton.addEventListener('click', function () {
                 const nativeNextButton = slider.querySelector('.w-slider-arrow-right');
+                console.log('Next button clicked, simulating click on native next button:', nativeNextButton);
                 simulateClick(nativeNextButton);
             });
         } else {
@@ -56,13 +59,15 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Slider navigation element with class .slide-nav not found');
             return;
         }
+        console.log('Slider navigation element found:', sliderNav);
 
         // Function to go to a specific slide using Webflow API
         function goToSlide(slideIndex) {
             const slideNavButtons = sliderNav.children;
+            console.log('Slide navigation buttons:', slideNavButtons);
             if (slideNavButtons[slideIndex]) {
+                console.log(`Navigating to slide ${slideIndex + 1}`);
                 simulateClick(slideNavButtons[slideIndex]);
-                console.log(`Navigated to slide ${slideIndex + 1}`);
             } else {
                 console.error(`Slide navigation button for index ${slideIndex} not found`);
             }
@@ -80,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(`Button for ${attr}:`, button);
             if (button) {
                 button.addEventListener('click', function () {
+                    console.log(`Button ${attr} clicked, navigating to slide index ${index}`);
                     goToSlide(index);
                 });
             } else {
