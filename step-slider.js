@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to simulate a click event
     function simulateClick(element) {
         if (element) {
-            element.click();
+            element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
         } else {
             console.error('Element not found:', element);
         }
@@ -44,10 +44,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (button) {
             button.addEventListener('click', function () {
                 const slideNavButtons = document.querySelectorAll('.slide-nav-2 .w-slider-dot');
+                if (slideNavButtons.length === 0) {
+                    console.error('No slide navigation buttons found.');
+                    return;
+                }
                 if (slideNavButtons[index]) {
                     simulateClick(slideNavButtons[index]);
                 } else {
-                    console.error(`Slide navigation button for ${attr} not found`);
+                    console.error(`Slide navigation button for ${attr} at index ${index} not found`);
                 }
             });
         } else {
