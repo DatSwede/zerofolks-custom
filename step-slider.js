@@ -50,13 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Next button not found');
         }
 
-        // Select the slider navigation element
-        const sliderNav = slider.querySelector('.slide-nav');
-        if (!sliderNav) {
-            console.error('Slider navigation element with class .slide-nav not found');
-            return;
-        }
-
         // Add event listeners for slide buttons
         const slideButtons = {
             'slide-1': 0,
@@ -69,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(`Button for ${attr}:`, button);
             if (button) {
                 button.addEventListener('click', function () {
-                    const slideNavButtons = sliderNav.children;
+                    const slideNavButtons = slider.querySelectorAll('.w-slider-dot');
                     console.log('Slide navigation buttons:', slideNavButtons);
                     if (slideNavButtons[index]) {
                         simulateClick(slideNavButtons[index]);
