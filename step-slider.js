@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
 
-    // Wait for Webflow scripts to be ready
+    // Wait for Webflow's scripts to finish loading as well
     if (window.Webflow && window.Webflow.ready) {
         window.Webflow.ready(initSliderNavigation);
     } else {
@@ -50,6 +50,24 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Next button not found');
         }
 
+        // Select the slider navigation element
+        const sliderNav = slider.querySelector('.slide-nav');
+        if (!sliderNav) {
+            console.error('Slider navigation element with class .slide-nav not found');
+            return;
+        }
+
+        // Function to go to a specific slide using Webflow API
+        function goToSlide(slideIndex) {
+            const slideNavButtons = sliderNav.children;
+            if (slideNavButtons[slideIndex]) {
+                simulateClick(slideNavButtons[slideIndex]);
+                console.log(`Navigated to slide ${slideIndex + 1}`);
+            } else {
+                console.error(`Slide navigation button for index ${slideIndex} not found`);
+            }
+        }
+
         // Add event listeners for slide buttons
         const slideButtons = {
             'slide-1': 0,
@@ -62,14 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(`Button for ${attr}:`, button);
             if (button) {
                 button.addEventListener('click', function () {
-                    const slideNavButtons = slider.querySelectorAll('.w-slider-dot');
-                    console.log('Slide navigation buttons:', slideNavButtons);
-                    if (slideNavButtons[index]) {
-                        simulateClick(slideNavButtons[index]);
-                        console.log(`Navigated to slide ${index + 1}`);
-                    } else {
-                        console.error(`Slide navigation button for ${attr} not found`);
-                    }
+                    goToSlide(index);
                 });
             } else {
                 console.error(`Button with attribute zf-slider="${attr}" not found`);
