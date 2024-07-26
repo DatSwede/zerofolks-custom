@@ -40,18 +40,18 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     for (const [attr, index] of Object.entries(slideButtons)) {
-        const button = document.querySelector([step-slider-btn="${attr}"]);
+        const button = document.querySelector(`[step-slider-btn="${attr}"]`);
         if (button) {
             button.addEventListener('click', function () {
                 const slideNavButtons = document.querySelectorAll('.slide-nav-2 .w-slider-dot');
                 if (slideNavButtons[index]) {
                     simulateClick(slideNavButtons[index]);
                 } else {
-                    console.error(Slide navigation button for ${attr} not found);
+                    console.error(`Slide navigation button for ${attr} not found`);
                 }
             });
         } else {
-            console.error(Button with attribute step-slider-btn="${attr}" not found);
+            console.error(`Button with attribute step-slider-btn="${attr}" not found`);
         }
     }
 });
