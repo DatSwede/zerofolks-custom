@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Function to go to a specific slide
         function goToSlide(slideIndex) {
-            const slider = document.querySelector('[step-slider="slider"]');
-            if (slider) {
-                const slideNavButtons = slider.querySelectorAll('.w-slider-dot');
+            const slideNavContainer = document.querySelector('.slide-nav.w-slider-nav');
+            if (slideNavContainer) {
+                const slideNavButtons = slideNavContainer.querySelectorAll('.w-slider-dot');
                 if (slideNavButtons.length === 0) {
                     console.error('No slide navigation buttons found.');
                     return;
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.error(`Slide navigation button for index ${slideIndex} not found`);
                 }
             } else {
-                console.error('Slider element with attribute step-slider="slider" not found');
+                console.error('Slider navigation container with class slide-nav w-slider-nav not found');
             }
         }
 
