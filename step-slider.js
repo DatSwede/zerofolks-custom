@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function simulateClick(element) {
         if (element) {
             element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+            console.log('Simulated click on:', element);
         } else {
             console.error('Element not found:', element);
         }
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const button = document.querySelector(`[step-slider-btn="${attr}"]`);
         if (button) {
             button.addEventListener('click', function () {
+                console.log(`Button ${attr} clicked, navigating to slide index ${index}`);
                 const slideNavButtons = document.querySelectorAll('.slide-nav-2 .w-slider-dot');
                 if (slideNavButtons.length === 0) {
                     console.error('No slide navigation buttons found.');
@@ -50,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 if (slideNavButtons[index]) {
                     simulateClick(slideNavButtons[index]);
+                    console.log(`Navigated to slide index ${index}`);
                 } else {
                     console.error(`Slide navigation button for ${attr} at index ${index} not found`);
                 }
