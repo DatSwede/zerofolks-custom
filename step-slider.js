@@ -50,6 +50,13 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Next button not found');
         }
 
+        // Select the slider navigation element
+        const sliderNav = document.querySelector('[zf-slider="slider-nav"]');
+        if (!sliderNav) {
+            console.error('Slider navigation element with attribute zf-slider="slider-nav" not found');
+            return;
+        }
+
         // Add event listeners for slide buttons
         const slideButtons = {
             'slide-1': 0,
@@ -62,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(`Button for ${attr}:`, button);
             if (button) {
                 button.addEventListener('click', function () {
-                    const slideNavButtons = slider.querySelectorAll('.w-slider-dot');
+                    const slideNavButtons = sliderNav.children;
                     console.log('Slide navigation buttons:', slideNavButtons);
                     if (slideNavButtons[index]) {
                         simulateClick(slideNavButtons[index]);
