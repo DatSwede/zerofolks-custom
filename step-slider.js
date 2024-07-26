@@ -38,22 +38,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Function to go to a specific slide
-        function goToSlide(slider, slideIndex) {
-            const slides = slider.querySelectorAll('.w-slide');
-            if (slides[slideIndex]) {
-                const sliderInstance = Webflow.require('slider');
-                sliderInstance.show(slideIndex);
-                console.log(`Navigated to slide ${slideIndex}`);
+        function goToSlide(slideIndex) {
+            const slider = document.querySelector('[step-slider="slider"]');
+            if (slider) {
+                const slideNavButtons = slider.querySelectorAll('.w-slider-dot');
+                if (slideNavButtons.length === 0) {
+                    console.error('No slide navigation buttons found.');
+                    return;
+                }
+                if (slideNavButtons[slideIndex]) {
+                    simulateClick(slideNavButtons[slideIndex]);
+                    console.log(`Navigated to slide ${slideIndex}`);
+                } else {
+                    console.error(`Slide navigation button for index ${slideIndex} not found`);
+                }
             } else {
-                console.error(`Slide index ${slideIndex} not found`);
+                console.error('Slider element with attribute step-slider="slider" not found');
             }
-        }
-
-        // Get the slider element
-        const slider = document.querySelector('[step-slider="slider"]');
-        if (!slider) {
-            console.error('Slider element with attribute step-slider="slider" not found');
-            return;
         }
 
         // Add event listeners for slide buttons
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (button) {
                 button.addEventListener('click', function () {
                     console.log(`Button ${attr} clicked, navigating to slide index ${index}`);
-                    goToSlide(slider, index);
+                    goToSlide(index);
                 });
             } else {
                 console.error(`Button with attribute step-slider-btn="${attr}" not found`);
