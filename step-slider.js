@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
                 console.log('Simulated click on:', element);
             } else {
-                console.error('Element not found:', element);
+                console.error('Element not found to simulate click:', element);
             }
         }
 
