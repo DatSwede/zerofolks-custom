@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        // Add event listeners for slide buttons
+        // Add event listeners for custom slide buttons
         const slideButtons = {
             'slide-1': 0,
             'slide-2': 1,
